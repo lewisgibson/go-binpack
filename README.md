@@ -5,6 +5,8 @@
 
 A Go package for packing rectangles into a bin using the MaxRects algorithm.
 
+WARNING: This algorithm prioritizes minimizing wasted space over raw performance. Using rectangles with extremely large dimensions can significantly increase computation time. If you need to pack a large number of rectangles, consider a more efficient solution—such as the Skyline algorithm.
+
 ## Resources
 
 -   [Discussions](https://github.com/lewisgibson/go-binpack/discussions)
@@ -37,7 +39,7 @@ func (c *Collager) Len() int {
 	return len(c.Images)
 }
 
-// Width returns the width of the image at index n.
+// Rectangle returns the dimensions of the image at index n.
 func (c *Collager) Rectangle(n int) binpack.Rectangle {
 	return binpack.Rectangle{
 		Width:  c.Images[n].Bounds().Dx(),
